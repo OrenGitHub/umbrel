@@ -33,12 +33,13 @@ jobs:
           APPROVED_BEARER_TOKEN_0: ${{ secrets.APPROVED_BEARER_TOKEN_0 }}
           APPROVED_URL_0_HEALTHCHECK: ${{ secrets.APPROVED_URL_0_HEALTHCHECK }}
 
-      - name: send the whole repo to dhscanner
+      - name: send the entire repo to dhscanner
         run: |
           tar -cz . | curl -v -X POST \
             -H "Authorization: Bearer ${APPROVED_BEARER_TOKEN_0}" \
             -H "Content-Type: application/octet-stream" \
             -H "Ignore-Testing-Code: true" \
+            -H "X-Directory-Name: umbrel" \
             -H "X-Relevant-Facts: tornado.web.RequestHandler" \
             -H "X-Debug-Queryengine: false" \
             --data-binary @- http://127.0.0.1:443/${APPROVED_URL_0} > output.sarif
