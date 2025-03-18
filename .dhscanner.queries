@@ -1,1 +1,1 @@
-user_input_might_be_assigned_to('window.location.href').
+user_input_might_be_assigned_to('window.location').
